@@ -61,6 +61,7 @@ public class OnlineStore {
             } else if (x == 2)// **************** manager ********************
             {
                 for (int i = 0; i < 3; i++) {
+                    // manager is introduced in the app so there is no need to sign up
                     // gets user and pass
                     // you are allowed to enter it only 3 times
                     if (isManagerSignedIn(managers) == true) {
@@ -69,7 +70,8 @@ public class OnlineStore {
                         do {
                             System.out.println("1) add products\n" +
                                     "2) delete products\n" +
-                                    "3) exit\n" +
+                                    "3) show products\n" +
+                                    "4) exit" +
                                     "please choose an option: ");
                             x = input.nextInt();
                             if (x == 1) {
@@ -77,7 +79,10 @@ public class OnlineStore {
                             } else if (x == 2) {
                                 manager_1.deletePruduct(products);
                             }
-                        } while (x != 3);
+                            else if (x == 3){
+                                showProducts(products);
+                            }
+                        } while (x != 4);
 
                         break;
                     } else
@@ -93,7 +98,7 @@ public class OnlineStore {
         //end of main code
 
     }
-
+    // methods area
     // method that signs up
     static void customerSignUp(@NotNull Customer customer) {
         System.out.println("please enter your specification to sign up:");
@@ -114,9 +119,9 @@ public class OnlineStore {
 //        System.out.println("please enter your postal code:");
 //        customer.setPostal_code(input.nextInt());
 
-    }
+    }// end of customerSignUp
 
-    // method that signs in !!
+    // method that signs in Customer !!
     static boolean isCustomerSignedIn(@NotNull ArrayList<Customer> customers) {
 
         System.out.println("please enter your user name: ");
@@ -135,8 +140,9 @@ public class OnlineStore {
         }
         System.out.println("your user name or password was wrong");
         return false;
-    }
+    }// end of isCustomerSigendIn
 
+    // method that signs in Manager !!
     static boolean isManagerSignedIn(@NotNull ArrayList<Manager> managers) {
 
         System.out.println("please enter your user name: ");
@@ -156,6 +162,13 @@ public class OnlineStore {
         }
         System.out.println("your user name or password was wrong");
         return false;
+    }// end of inManagerSignedIn
+
+    // It shows all of products
+    static void showProducts(@NotNull ArrayList<Product> products){
+        for (int i = 0; i < products.size(); i++){
+            products.get(i).show();
+        }
     }
 
 

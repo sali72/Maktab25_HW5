@@ -54,4 +54,12 @@ public class ElectricDevice extends Product {
         temp = input.next();
         this.brand = temp;
     }
+
+    // method to show items
+    @Override
+    public void show() {
+        super.show();
+        System.out.println(" Kind of this Electric device: " + this.kind +
+                "\n brand of this Electric device: " + this.brand);
+    }
 }

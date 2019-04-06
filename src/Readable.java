@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Readable extends Product {
-    enum kind{BOOK, JOURNALS, NEWSPAPER}
+    enum kind {BOOK, JOURNALS, NEWSPAPER}
+
     //properties
     private kind kind;
     private String writers;
@@ -10,7 +11,7 @@ public class Readable extends Product {
 
     // specified method to set parameters
     @Override
-    public void set(){
+    public void set() {
         super.set();
         Scanner input = new Scanner(System.in);
         String temp;
@@ -18,7 +19,7 @@ public class Readable extends Product {
         System.out.println("please choose kind of  Readable " +
                 "\n{1.BOOK, 2.JOURNALS, 3.NEWSPAPER}:");
         temp_int = input.nextInt();
-        switch (temp_int){
+        switch (temp_int) {
             case 1:
                 this.kind = kind.BOOK;
                 break;
@@ -40,10 +41,15 @@ public class Readable extends Product {
         System.out.println("please enter how many pages does it have");
         temp_int = input.nextInt();
         this.page_number = temp_int;
-
-
-
-
+    }
+    // method to show items
+    @Override
+    public void show() {
+        super.show();
+        System.out.println(" Kind of this Readable: " + this.kind +
+                "\n Writers of this Readable: " + this.writers +
+                "\n Publisher of this Readable: " + this.publisher +
+                "\n Pages number of this Readable: " + this.page_number);
     }
 
 }

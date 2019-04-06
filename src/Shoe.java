@@ -41,4 +41,18 @@ public class Shoe extends Product {
 
     }
 
+    // method to show items
+    @Override
+    public void show() {
+        super.show();
+        System.out.println(" Kind of this Shoe: " + this.kind +
+                "\n brand of this Shoe: " + this.brand);
+        if (is_for_men == true){
+            System.out.println("for men");
+        }
+        else {
+            System.out.println("for women");
+        }
+    }
+
 }

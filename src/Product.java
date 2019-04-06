@@ -7,8 +7,9 @@ abstract public class Product {
     private float price;
     private String product_details;
     //generating a uniq id
-    static final AtomicInteger next_id = new AtomicInteger();
+    public static final AtomicInteger next_id = new AtomicInteger();
     public final Integer product_id = next_id.getAndIncrement();
+
 
     //setters & getters
     public void setProduct_name(String product_name) {
@@ -34,8 +35,9 @@ abstract public class Product {
     public String getProduct_details() {
         return product_details;
     }
+
     // specified method to set parameters
-    public void set(){
+    public void set() {
         Scanner input = new Scanner(System.in);
         String temp;
         float temp_float;
@@ -48,5 +50,14 @@ abstract public class Product {
         System.out.println("please enter additional details that you want to add to this product");
         temp = input.next();
         this.product_details = temp;
+    }
+
+    // method to show items
+    public void show() {
+        System.out.println("=================== product number " + this.next_id + " ===================\n" +
+                "\n product name: " + this.product_name +
+                "\n product price: " + this.price +
+                "\n product details: " + this.product_details +
+                "\n product ID: " + this.product_id);
     }
 }

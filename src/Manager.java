@@ -32,7 +32,7 @@ public class Manager {
                 x = input.nextInt();
                 for (int i = 0; i < x; i++) {
                     Product temp = new ElectricDevice();
-                    temp.set();
+                    temp.set(); // polymorphism, here I have used over written methods in child classes
                     products.add(temp);
                     System.out.println("Electric Devices added");
                 }
