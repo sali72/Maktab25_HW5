@@ -1,6 +1,7 @@
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Customer {
+    // properties
     public String user_name;
     private String password;
     private String name;

@@ -1,19 +1,20 @@
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OnlineStore {
-    static Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+        // properties
         ArrayList<Customer> customers = new ArrayList<>();
 
         System.out.println("********** Ali's ONLINE STORE **********");
-        int x;
-        do {
+        int x;// number that customer enters
+        // main code
+        do { // do while starts
             System.out.println("\n" + "1) Customer" +
-                    "\n" + "2) Client" +
+                    "\n" + "2) manager" +
                     "\n" + "3) Exit app " +
                     "\n" + "Please choose an option: ");
             x = input.nextInt();
@@ -28,8 +29,9 @@ public class OnlineStore {
                         for (int i = 0; i<3; i++) {
                             // gets user and pass
                             // you are allowed to enter it only 3 times
-                            if (customerSignIn(customers) == true) {
+                            if (isCustomerSignedIn(customers) == true) {
                                 System.out.println(" Welcome ");
+                                break;
                             } else
                                 System.out.println("you have " + (3-i-1) + " more chances!");
                         }
@@ -46,7 +48,7 @@ public class OnlineStore {
                         System.out.println("please choose a valid option");
                 }
 
-            } else if (x == 2)// Client
+            } else if (x == 2)// manager
             {
                 System.out.println("1)Sign in" +
                         "\n2)Sign up" +
@@ -67,7 +69,8 @@ public class OnlineStore {
                 break;
             } else
                 System.out.println("please choose a valid option");
-        } while (x != 3);
+        } while (x != 3);//end of do while
+        //end of main code
 
     }
     // method that signs up
@@ -92,7 +95,7 @@ public class OnlineStore {
 
     }
     // method that signs in !!
-    static boolean customerSignIn(@NotNull ArrayList<Customer> customers){
+    static boolean isCustomerSignedIn(@NotNull ArrayList<Customer> customers){
 
         System.out.println("please enter your user name: ");
         String claimed_user_name = input.next();
@@ -100,7 +103,6 @@ public class OnlineStore {
         String claimed_password = input.next();
 
         for (int i = 0; i < customers.size(); i++){
-
             if (claimed_user_name.equals( customers.get(i).user_name)){
                 System.out.println("user name is true");
                 if (claimed_password.equals(customers.get(i).getPassword())) {
