@@ -8,9 +8,7 @@ public class OnlineStore {
     public static void main(String[] args) {
         // properties
         ArrayList<Customer> customers = new ArrayList<>();
-        ArrayList<Shoe> shoes = new ArrayList<>();
-        ArrayList<ElectricDevice> electricDevices = new ArrayList<>();
-        ArrayList<Readable> readables = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
         ArrayList<Manager> managers = new ArrayList<>();
         Manager manager_1 = new Manager(); // managers can only be defined in the app
         manager_1.user_name = "ali";       // here we have one manager
@@ -67,7 +65,14 @@ public class OnlineStore {
                     if (isManagerSignedIn(managers) == true) {
                         System.out.println(" *** *** Welcome *** ***");
                         do {
-
+                            System.out.println("1) add products\n" +
+                                    "2) delete products\n" +
+                                    "3) exit\n" +
+                                    "please choose an option: ");
+                            x = input.nextInt();
+                            if (x==1){
+                                manager_1.addPruduct(products);
+                            }
                         }while (x!=3);
                         break;
                     } else
