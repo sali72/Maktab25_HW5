@@ -15,6 +15,7 @@ public class OnlineStore {
         manager_1.user_name = "ali";       // here we have one manager
         manager_1.setPassword("alipass");
         managers.add(manager_1);
+        ShoppingBasket shoppingBasket = new ShoppingBasket();// our only shopping basket
 
         System.out.println("********** Ali's ONLINE STORE **********");
         int x;// number that customer enters
@@ -39,7 +40,16 @@ public class OnlineStore {
                             if (isCustomerSignedIn(customers) == true) {
                                 System.out.println(" *** Welcome *** ");
                                 do {
-                                    System.out.println("\n");
+                                    System.out.println("1) add products" +
+                                            "\n2) delete products" +
+                                            "\n3) exit" +
+                                            "\n Please choose an option: ");
+                                    x = input.nextInt();
+                                    if (x==1){
+                                        showProducts(products);
+                                        addToBasket(products,shoppingBasket);
+
+                                    }
                                 } while (x != 3);
                                 break;
                             } else
@@ -167,9 +177,43 @@ public class OnlineStore {
     // It shows all of products
     static void showProducts(@NotNull ArrayList<Product> products){
         for (int i = 0; i < products.size(); i++){
-            products.get(i).show();
+            products.get(i).show(); // polymorphism !
         }
     }
+    // method to add basket some product
+    static void addToBasket(@NotNull ArrayList<Product> products, ShoppingBasket shoppingBasket ){
+        int x;
+        int x_count;
+        System.out.println( "\n Which product do you want to add (set id)?: ");
+        x = input.nextInt();
+        System.out.println( "how many ? ");
+        x_count = input.nextInt();
+        if (x_count > 0 ) { // it checks if customer added a positive number or not
+            for (int i = 0; i < products.size(); i++) {
+                if (x == products.get(i).product_id) {
+                    if (products.get(i).getProduct_count() > x_count) { // It checks if we have enough products or not
+                        shoppingBasket.getProducts().add(products.get(i));// It adds product from store to shopping basket
+                        // line below reduces amount of product_count in shop
+                        products.get(i).setProduct_count(products.get(i).getProduct_count() - x_count);
+                        // line below sets true number of product_count to last product added to basket
+                        // which we added 2 lines above
+                        shoppingBasket.getProducts().get(shoppingBasket.getProducts().size()-1).setProduct_count(x_count);
+                    }
+                    else if (products.get(i).getProduct_count() == x_count){
+                        shoppingBasket.getProducts().add(products.get(i));
+                        products.remove(i);
+                    }
+                    else {
+                        System.out.println("sorry we only have " + products.get(i).getProduct_count()
+                        + " of this product");
+                    }
+                }
+            }
+        }
+        else {
+            System.out.println("invalid number");
+        }
+    }// end of method addToBasket
 
 
 }
