@@ -25,7 +25,14 @@ public class OnlineStore {
                 x = input.nextInt();
                 switch (x) {
                     case 1:
-                        System.out.println();
+                        for (int i = 0; i<3; i++) {
+                            // gets user and pass
+                            // you are allowed to enter it only 3 times
+                            if (customerSignIn(customers) == true) {
+                                System.out.println(" Welcome ");
+                            } else
+                                System.out.println("you have " + (3-i-1) + " more chances!");
+                        }
                         break;
                     case 2:
                         Customer temp = new Customer();
@@ -33,7 +40,8 @@ public class OnlineStore {
                         customerSignUp(temp);
                         break;
                     case 3:
-                        break;
+                        x = 0;
+                        continue;
                     default:
                         System.out.println("please choose a valid option");
                 }
@@ -50,7 +58,8 @@ public class OnlineStore {
                     case 2:
                         break;
                     case 3:
-                        break;
+                        x = 0;
+                        continue;
                     default:
                         System.out.println("please choose a valid option");
                 }
@@ -61,7 +70,7 @@ public class OnlineStore {
         } while (x != 3);
 
     }
-
+    // method that signs up
     static void customerSignUp(@NotNull Customer customer) {
         System.out.println("please enter your specification to sign up:");
         System.out.println("please enter a user name:");
@@ -82,7 +91,27 @@ public class OnlineStore {
 //        customer.setPostal_code(input.nextInt());
 
     }
+    // method that signs in !!
+    static boolean customerSignIn(@NotNull ArrayList<Customer> customers){
 
+        System.out.println("please enter your user name: ");
+        String claimed_user_name = input.next();
+        System.out.println("please enter your user password: ");
+        String claimed_password = input.next();
+
+        for (int i = 0; i < customers.size(); i++){
+
+            if (claimed_user_name.equals( customers.get(i).user_name)){
+                System.out.println("user name is true");
+                if (claimed_password.equals(customers.get(i).getPassword())) {
+                    System.out.println("password is true");
+                    return true;
+                }
+            }
+        }
+        System.out.println("your user name or password was wrong");
+        return false;
+    }
 
 
 }
