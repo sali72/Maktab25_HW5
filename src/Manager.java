@@ -28,7 +28,7 @@ public class Manager {
         x = input.nextInt();
         switch (x) {
             case 1: {
-                System.out.println("how many ?");
+                System.out.println("how many types do you want to add?");
                 x = input.nextInt();
                 for (int i = 0; i < x; i++) {
                     Product temp = new ElectricDevice();

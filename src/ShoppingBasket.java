@@ -23,4 +23,10 @@ public class ShoppingBasket {
             sum += products.get(i).getPrice();
         }
     }
+    // shows products in the basket
+    public void showBasketProducts(){
+        for (int i = 0; i < products.size(); i++){
+            products.get(i).show(); // polymorphism !
+        }
+    }
 }

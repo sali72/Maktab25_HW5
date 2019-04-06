@@ -48,10 +48,10 @@ public class Shoe extends Product {
         System.out.println(" Kind of this Shoe: " + this.kind +
                 "\n brand of this Shoe: " + this.brand);
         if (is_for_men == true){
-            System.out.println("for men");
+            System.out.println(" for men");
         }
         else {
-            System.out.println("for women");
+            System.out.println(" for women");
         }
     }
 

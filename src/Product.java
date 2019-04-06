@@ -59,7 +59,7 @@ abstract public class Product {
         this.price = temp_float;
         System.out.println("please enter how many do you want to add?");
         temp_int = input.nextInt();
-        this.price = temp_int;
+        this.product_count = temp_int;
         System.out.println("please enter additional details that you want to add to this product");
         temp = input.next();
         this.product_details = temp;

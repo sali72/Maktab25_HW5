@@ -48,9 +48,13 @@ public class OnlineStore {
                                     if (x==1){
                                         showProducts(products);
                                         addToBasket(products,shoppingBasket);
-
+                                    }
+                                    else if (x == 2){
+                                        shoppingBasket.showBasketProducts();
+                                        deleteFromBasket(products,shoppingBasket);
                                     }
                                 } while (x != 3);
+                                x=0;
                                 break;
                             } else
                                 System.out.println("you have " + (3 - i - 1) + " more chances!");
@@ -81,7 +85,7 @@ public class OnlineStore {
                             System.out.println("1) add products\n" +
                                     "2) delete products\n" +
                                     "3) show products\n" +
-                                    "4) exit" +
+                                    "4) exit\n" +
                                     "please choose an option: ");
                             x = input.nextInt();
                             if (x == 1) {
@@ -180,6 +184,7 @@ public class OnlineStore {
             products.get(i).show(); // polymorphism !
         }
     }
+
     // method to add basket some product
     static void addToBasket(@NotNull ArrayList<Product> products, ShoppingBasket shoppingBasket ){
         int x;
@@ -190,6 +195,7 @@ public class OnlineStore {
         x_count = input.nextInt();
         if (x_count > 0 ) { // it checks if customer added a positive number or not
             for (int i = 0; i < products.size(); i++) {
+
                 if (x == products.get(i).product_id) {
                     if (products.get(i).getProduct_count() > x_count) { // It checks if we have enough products or not
                         shoppingBasket.getProducts().add(products.get(i));// It adds product from store to shopping basket
@@ -208,12 +214,71 @@ public class OnlineStore {
                         + " of this product");
                     }
                 }
+                else {
+                    System.out.println(" there is no product with that id");
+                }
             }
         }
         else {
             System.out.println("invalid number");
         }
     }// end of method addToBasket
+
+    // method that deletes products from basket
+    static void deleteFromBasket(@NotNull ArrayList<Product> products, ShoppingBasket shoppingBasket){
+        int x_count;
+        int x;
+        System.out.println( "\n Which product do you want to delete(set id)?: ");
+        x = input.nextInt();
+        System.out.println( " how many ? ");
+        x_count = input.nextInt();
+        if (x_count > 0 ) { // it checks if customer added a positive number or not
+            // finds the product
+            int size_of_basket = shoppingBasket.getProducts().size();
+            for (int i = 0; i < size_of_basket; i++) {
+
+                if (x == shoppingBasket.getProducts().get(i).product_id) {
+                    // if we find the product that customer entered
+                    // variable below shows how many of that product do we have
+                    int count_of_the_product = shoppingBasket.getProducts().get(i).getProduct_count();
+
+                    if (count_of_the_product > x_count) { // It checks if there is enough products or not
+                        // below we check if we had that item in the shop or not
+                        for (int j = 0; j < products.size(); j++) {
+                            if (x == products.get(j).product_id){
+                                products.get(j).setProduct_count( x_count + products.get(j).getProduct_count());
+                            }
+                        }
+                        // if it goes out of for, it means that we didn't have that item so we add it
+                        products.add(shoppingBasket.getProducts().get(i));
+                        shoppingBasket.getProducts().get(i).setProduct_count(count_of_the_product - x_count);
+
+                    }
+                    else if (count_of_the_product == x_count){
+                        // below we check if we had that item in the shop or not
+                        for (int j = 0; j < products.size(); j++) {
+                            if (x == products.get(j).product_id){
+                                products.get(j).setProduct_count( x_count + products.get(j).getProduct_count());
+                            }
+                        }
+                        // if it goes out of for, it means that we didn't have that item so we add it
+                        products.add(shoppingBasket.getProducts().get(i));
+                        shoppingBasket.getProducts().remove(i);
+                    }
+                    else {
+                        System.out.println("sorry we only have " + products.get(i).getProduct_count()
+                                + " of this product");
+                    }
+                }
+                else {
+                    System.out.println(" there is no product with that id");
+                }
+            }
+        }
+        else {
+            System.out.println(" invalid number ");
+        }
+    }// end of deleteFromBasket method
 
 
 }
