@@ -8,6 +8,14 @@ public class OnlineStore {
     public static void main(String[] args) {
         // properties
         ArrayList<Customer> customers = new ArrayList<>();
+        ArrayList<Shoe> shoes = new ArrayList<>();
+        ArrayList<ElectricDevice> electricDevices = new ArrayList<>();
+        ArrayList<Readable> readables = new ArrayList<>();
+        ArrayList<Manager> managers = new ArrayList<>();
+        Manager manager_1 = new Manager(); // managers can only be defined in the app
+        manager_1.user_name = "ali";       // here we have one manager
+        manager_1.setPassword("alipass");
+        managers.add(manager_1);
 
         System.out.println("********** Ali's ONLINE STORE **********");
         int x;// number that customer enters
@@ -18,7 +26,7 @@ public class OnlineStore {
                     "\n" + "3) Exit app " +
                     "\n" + "Please choose an option: ");
             x = input.nextInt();
-            if (x == 1)// Customer
+            if (x == 1)// ******************* Customer *********************
             {
                 System.out.println("1)Sign in" +
                         "\n2)Sign up" +
@@ -30,7 +38,10 @@ public class OnlineStore {
                             // gets user and pass
                             // you are allowed to enter it only 3 times
                             if (isCustomerSignedIn(customers) == true) {
-                                System.out.println(" Welcome ");
+                                System.out.println(" *** Welcome *** ");
+                                do {
+                                    System.out.println("\n");
+                                }while (x!=3);
                                 break;
                             } else
                                 System.out.println("you have " + (3-i-1) + " more chances!");
@@ -48,22 +59,19 @@ public class OnlineStore {
                         System.out.println("please choose a valid option");
                 }
 
-            } else if (x == 2)// manager
+            } else if (x == 2)// **************** manager ********************
             {
-                System.out.println("1)Sign in" +
-                        "\n2)Sign up" +
-                        "\n3)Exit");
-                x = input.nextInt();
-                switch (x) {
-                    case 1:
+                for (int i = 0; i<3; i++) {
+                    // gets user and pass
+                    // you are allowed to enter it only 3 times
+                    if (isManagerSignedIn(managers) == true) {
+                        System.out.println(" *** *** Welcome *** ***");
+                        do {
+
+                        }while (x!=3);
                         break;
-                    case 2:
-                        break;
-                    case 3:
-                        x = 0;
-                        continue;
-                    default:
-                        System.out.println("please choose a valid option");
+                    } else
+                        System.out.println("you have " + (3-i-1) + " more chances!");
                 }
             } else if (x == 3) { //exit app
                 break;
@@ -107,6 +115,26 @@ public class OnlineStore {
                 System.out.println("user name is true");
                 if (claimed_password.equals(customers.get(i).getPassword())) {
                     System.out.println("password is true");
+                    return true;
+                }
+            }
+        }
+        System.out.println("your user name or password was wrong");
+        return false;
+    }
+    static boolean isManagerSignedIn(@NotNull ArrayList<Manager> managers){
+
+        System.out.println("please enter your user name: ");
+        String claimed_user_name = input.next();
+        System.out.println("please enter your user password: ");
+        String claimed_password = input.next();
+
+        for (int i = 0; i < managers.size(); i++){
+            if (claimed_user_name.equals( managers.get(i).user_name)){
+                System.out.println("user name is true");
+                if (claimed_password.equals(managers.get(i).getPassword())) {
+                    System.out.println("password is true");
+                    System.out.println();
                     return true;
                 }
             }

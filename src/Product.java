@@ -1,4 +1,4 @@
-abstract public class Products {
+abstract public class Product {
     //properties
     private String product_name;
     private float price;
