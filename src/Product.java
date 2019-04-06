@@ -8,7 +8,7 @@ abstract public class Product {
     private String product_details;
     //generating a uniq id
     static final AtomicInteger next_id = new AtomicInteger();
-    public final Integer Product_id = next_id.getAndIncrement();
+    public final Integer product_id = next_id.getAndIncrement();
 
     //setters & getters
     public void setProduct_name(String product_name) {

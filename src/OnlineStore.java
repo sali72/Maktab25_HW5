@@ -1,4 +1,5 @@
 import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,17 +33,17 @@ public class OnlineStore {
                 x = input.nextInt();
                 switch (x) {
                     case 1:
-                        for (int i = 0; i<3; i++) {
+                        for (int i = 0; i < 3; i++) {
                             // gets user and pass
                             // you are allowed to enter it only 3 times
                             if (isCustomerSignedIn(customers) == true) {
                                 System.out.println(" *** Welcome *** ");
                                 do {
                                     System.out.println("\n");
-                                }while (x!=3);
+                                } while (x != 3);
                                 break;
                             } else
-                                System.out.println("you have " + (3-i-1) + " more chances!");
+                                System.out.println("you have " + (3 - i - 1) + " more chances!");
                         }
                         break;
                     case 2:
@@ -59,25 +60,31 @@ public class OnlineStore {
 
             } else if (x == 2)// **************** manager ********************
             {
-                for (int i = 0; i<3; i++) {
+                for (int i = 0; i < 3; i++) {
                     // gets user and pass
                     // you are allowed to enter it only 3 times
                     if (isManagerSignedIn(managers) == true) {
                         System.out.println(" *** *** Welcome *** ***");
+
                         do {
                             System.out.println("1) add products\n" +
                                     "2) delete products\n" +
                                     "3) exit\n" +
                                     "please choose an option: ");
                             x = input.nextInt();
-                            if (x==1){
+                            if (x == 1) {
                                 manager_1.addPruduct(products);
+                            } else if (x == 2) {
+                                manager_1.deletePruduct(products);
                             }
-                        }while (x!=3);
+                        } while (x != 3);
+
                         break;
                     } else
-                        System.out.println("you have " + (3-i-1) + " more chances!");
+                        System.out.println("you have " + (3 - i - 1) + " more chances!");
                 }
+                x = 0;
+                continue;
             } else if (x == 3) { //exit app
                 break;
             } else
@@ -86,6 +93,7 @@ public class OnlineStore {
         //end of main code
 
     }
+
     // method that signs up
     static void customerSignUp(@NotNull Customer customer) {
         System.out.println("please enter your specification to sign up:");
@@ -107,16 +115,17 @@ public class OnlineStore {
 //        customer.setPostal_code(input.nextInt());
 
     }
+
     // method that signs in !!
-    static boolean isCustomerSignedIn(@NotNull ArrayList<Customer> customers){
+    static boolean isCustomerSignedIn(@NotNull ArrayList<Customer> customers) {
 
         System.out.println("please enter your user name: ");
         String claimed_user_name = input.next();
         System.out.println("please enter your user password: ");
         String claimed_password = input.next();
 
-        for (int i = 0; i < customers.size(); i++){
-            if (claimed_user_name.equals( customers.get(i).user_name)){
+        for (int i = 0; i < customers.size(); i++) {
+            if (claimed_user_name.equals(customers.get(i).user_name)) {
                 System.out.println("user name is true");
                 if (claimed_password.equals(customers.get(i).getPassword())) {
                     System.out.println("password is true");
@@ -127,15 +136,16 @@ public class OnlineStore {
         System.out.println("your user name or password was wrong");
         return false;
     }
-    static boolean isManagerSignedIn(@NotNull ArrayList<Manager> managers){
+
+    static boolean isManagerSignedIn(@NotNull ArrayList<Manager> managers) {
 
         System.out.println("please enter your user name: ");
         String claimed_user_name = input.next();
         System.out.println("please enter your user password: ");
         String claimed_password = input.next();
 
-        for (int i = 0; i < managers.size(); i++){
-            if (claimed_user_name.equals( managers.get(i).user_name)){
+        for (int i = 0; i < managers.size(); i++) {
+            if (claimed_user_name.equals(managers.get(i).user_name)) {
                 System.out.println("user name is true");
                 if (claimed_password.equals(managers.get(i).getPassword())) {
                     System.out.println("password is true");

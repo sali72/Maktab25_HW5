@@ -63,5 +63,15 @@ public class Manager {
         }
 
     }
-    
+    public void deletePruduct(ArrayList<Product> products) {
+        Scanner input = new Scanner(System.in);
+        int temp;
+        System.out.println("please enter id of product that you want to delete: ");
+        temp = input.nextInt();
+        for (int i = 0; i < products.size(); i++){
+            if (products.get(i).product_id == temp ){
+                products.remove(i);
+            }
+        }
+    }
 }
