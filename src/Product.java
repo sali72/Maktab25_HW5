@@ -67,7 +67,7 @@ abstract public class Product {
 
     // method to show items
     public void show() {
-        System.out.println("=================== product number " + this.next_id + " ===================\n" +
+        System.out.println("=================== product" + " ===================\n" +
                 "\n product name: " + this.product_name +
                 "\n product price: " + this.price +
                 "\n product count: " + this.product_count +

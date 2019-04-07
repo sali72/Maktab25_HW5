@@ -17,11 +17,12 @@ public class ShoppingBasket {
       products.add(product);
     }
     // sum the price of basket method
-    public void showPrice () {
+    public double getPrice () {
         double sum = 0.0;
         for (int i = 0; i < products.size(); i++){
             sum += products.get(i).getPrice();
         }
+        return sum;
     }
     // shows products in the basket
     public void showBasketProducts(){
